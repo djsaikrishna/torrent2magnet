@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+config();
 import { existsSync, mkdirSync, readFileSync, unlinkSync } from "fs";
 import parseTorrent from "parse-torrent";
 import axios from "axios";
