@@ -1,5 +1,3 @@
-import { config } from "dotenv";
-config();
 import { existsSync, mkdirSync, readFileSync, unlinkSync } from "fs";
 import parseTorrent from "parse-torrent";
 import axios from "axios";
@@ -15,7 +13,7 @@ export default (bot) => {
       if (!/\.torrent$/i.test(file_name)) {
         return bot.sendMessage(
           chatId,
-          "Kindly give me a valid .torrent file!",
+          "Invalid .torrent file. Try again!",
           { reply_to_message_id: msgId }
         );
       }
@@ -36,21 +34,12 @@ export default (bot) => {
 
       //If message length is over 4096 then use telegraph
       if (magnet.length >= 4096) {
-        const paste = await axios.post(
-          process.env.TELE_GRAPH_URL,
-          {
-            access_token: process.env.TELE_GRAPH_TOKEN,
-            title: "magnet link",
-            content: [{ tag: "p", children: [magnet] }],
-            return_content: true,
-          },
-          {
-            headers: {
-              "User-Agent":
-                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
-            },
-          }
-        );
+        const paste = await axios.post(process.env.TELE_GRAPH_URL, {
+          access_token: process.env.TELE_GRAPH_TOKEN,
+          title: "magnet link",
+          content: [{ tag: "p", children: [magnet] }],
+          return_content: true,
+        });
         bot.sendMessage(chatId, `${paste.data.result.url}`, {
           reply_to_message_id: msgId,
         });
@@ -63,7 +52,7 @@ export default (bot) => {
       //and Now delete the .torrent file from directory;
       unlinkSync(downloaded_file);
     } catch (error) {
-      bot.sendMessage(chatId, `${error}`);
+      bot.sendMessage(chatId, `${error.message}`);
     }
   });
 };
