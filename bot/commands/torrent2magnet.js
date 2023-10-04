@@ -34,12 +34,21 @@ export default (bot) => {
 
       //If message length is over 4096 then use telegraph
       if (magnet.length >= 4096) {
-        const paste = await axios.post(process.env.TELE_GRAPH_URL, {
-          access_token: process.env.TELE_GRAPH_TOKEN,
-          title: "magnet link",
-          content: [{ tag: "p", children: [magnet] }],
-          return_content: true,
-        });
+        const paste = await axios.post(
+          process.env.TELE_GRAPH_URL,
+          {
+            access_token: process.env.TELE_GRAPH_TOKEN,
+            title: "magnet link",
+            content: [{ tag: "p", children: [magnet] }],
+            return_content: true,
+          },
+          {
+            headers: {
+              "User-Agent":
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
+            },
+          }
+        );
         bot.sendMessage(chatId, `${paste.data.result.url}`, {
           reply_to_message_id: msgId,
         });
