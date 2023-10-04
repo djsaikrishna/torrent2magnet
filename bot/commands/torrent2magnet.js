@@ -52,7 +52,7 @@ export default (bot) => {
       //and Now delete the .torrent file from directory;
       unlinkSync(downloaded_file);
     } catch (error) {
-      console.log(error);
+      bot.sendMessage(chatId, `${error}`);
     }
   });
 };
