@@ -11,11 +11,9 @@ export default (bot) => {
     try {
       //if user doesn't send .torrent file then stop executing rest of the codes
       if (!/\.torrent$/i.test(file_name)) {
-        return bot.sendMessage(
-          chatId,
-          "Invalid .torrent file. Try again!",
-          { reply_to_message_id: msgId }
-        );
+        return bot.sendMessage(chatId, "Invalid .torrent file. Try again!", {
+          reply_to_message_id: msgId,
+        });
       }
       //check if directory exists or not if not then create
       if (!existsSync(downloadDir)) {
@@ -52,7 +50,7 @@ export default (bot) => {
       //and Now delete the .torrent file from directory;
       unlinkSync(downloaded_file);
     } catch (error) {
-      bot.sendMessage(chatId, `${error}`);
+      bot.sendMessage(chatId, `${error.message}`);
     }
   });
 };
