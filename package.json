@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "name": "torrent2magnet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
+    "deploy": "pm2 start bot.js --watch --name t2m"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "node-telegram-bot-api": "^0.63.0",
+    "parse-torrent": "^11.0.14"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
