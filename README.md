@@ -17,16 +17,13 @@ Example `.env` file:
 BOT_TOKEN=//grab your token from https://t.me/BotFather
 TELE_GRAPH_URL=https://api.telegra.ph/createPage
 TELE_GRAPH_TOKEN=//grab the telegraph token
+MONGO_DB=//Mongodb url for saving counts
 ```
 
 ### Start server
 
 To run the server locally, use the following command: `npm run dev`
 
-or if you want to install in the production server then make sure
-you've `pm2` installed globally or install `npm install -g pm2`.
-then run `npm run deploy`.
-check `pm2 logs` for logs.
 
 ## Contributing
 

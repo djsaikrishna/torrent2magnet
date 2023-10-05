@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, unlinkSync } from "fs";
 import parseTorrent from "parse-torrent";
 import axios from "axios";
+import { Counter } from "../db/counterSchema.js";
 
 export default (bot) => {
   bot.on("document", async (msg) => {
@@ -47,6 +48,8 @@ export default (bot) => {
           reply_to_message_id: msgId,
         });
       }
+      //Increase the counter
+      await Counter.updateOne({}, { $inc: { count: 1 } }, { upsert: true });
       //and Now delete the .torrent file from directory;
       unlinkSync(downloaded_file);
     } catch (error) {
