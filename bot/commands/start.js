@@ -12,7 +12,9 @@ export default (bot) => {
         }
       );
     } catch (error) {
-      console.log(error);
+      bot.sendMessage(chatId, `${error.message}`, {
+        reply_to_message_id: msgId,
+      });
     }
   });
 };

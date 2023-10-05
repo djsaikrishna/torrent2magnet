@@ -9,12 +9,18 @@ export default (bot) => {
     const msgId = msg.message_id;
     const { file_id, file_name } = msg.document;
     const downloadDir = "./torrents";
+    const options = {
+      parse_mode: "HTML",
+      reply_to_message_id: msgId,
+    };
     try {
       //if user doesn't send .torrent file then stop executing rest of the codes
       if (!/\.torrent$/i.test(file_name)) {
-        return bot.sendMessage(chatId, "Invalid .torrent file. Try again!", {
-          reply_to_message_id: msgId,
-        });
+        return bot.sendMessage(
+          chatId,
+          "<b>Invalid .torrent file. Try again!</b>",
+          options
+        );
       }
       //check if directory exists or not if not then create
       if (!existsSync(downloadDir)) {
@@ -39,14 +45,13 @@ export default (bot) => {
           content: [{ tag: "p", children: [magnet] }],
           return_content: true,
         });
-        bot.sendMessage(chatId, `${paste.data.result.url}`, {
-          reply_to_message_id: msgId,
-        });
+        bot.sendMessage(
+          chatId,
+          `<code>${paste.data.result.url}</code>`,
+          options
+        );
       } else {
-        bot.sendMessage(chatId, `<em>${magnet}</em>`, {
-          parse_mode: "HTML",
-          reply_to_message_id: msgId,
-        });
+        bot.sendMessage(chatId, `<code>${magnet}</code>`, options);
       }
       //Increase the counter
       await Counter.updateOne({}, { $inc: { count: 1 } }, { upsert: true });

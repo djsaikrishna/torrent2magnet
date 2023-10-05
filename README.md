@@ -1,7 +1,16 @@
 ## Torrent to Magnet
+
 A Telegram bot to convert .torrent file into magnet link.
 Just send any .torrent file to the bot and it'll give you
 magnet link in return.
+
+## Available commands
+
+```
+/start - Start the bot
+/help - Display help message
+To Convert torrent file into magnet links just send any .torrent file.
+```
 
 ## Requirements
 
@@ -23,7 +32,6 @@ MONGO_DB=//Mongodb url for saving counts
 ### Start server
 
 To run the server locally, use the following command: `npm run dev`
-
 
 ## Contributing
 

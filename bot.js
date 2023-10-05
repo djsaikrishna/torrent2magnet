@@ -8,7 +8,9 @@ const bot = new TelegramBot(token, { polling: true });
 // Import command
 import start from "./bot/commands/start.js";
 import torrent2magnet from "./bot/commands/torrent2magnet.js";
+import help from "./bot/commands/help.js";
 
 //Use command
 start(bot);
 torrent2magnet(bot);
+help(bot);
