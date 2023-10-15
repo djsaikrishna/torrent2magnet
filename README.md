@@ -9,6 +9,7 @@ magnet link in return.
 ```
 /start - Start the bot
 /help - Display help message
+/stats - only owner can execute this 
 To Convert torrent file into magnet links just send any .torrent file.
 ```
 
@@ -27,6 +28,7 @@ BOT_TOKEN=//grab your token from https://t.me/BotFather
 TELE_GRAPH_URL=https://api.telegra.ph/createPage
 TELE_GRAPH_TOKEN=//grab the telegraph token
 MONGO_DB=//Mongodb url for saving counts
+SUDO_USER= //TG Userid
 ```
 
 ### Start server
