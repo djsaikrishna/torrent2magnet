@@ -45,11 +45,7 @@ export default (bot) => {
           content: [{ tag: "p", children: [magnet] }],
           return_content: true,
         });
-        bot.sendMessage(
-          chatId,
-          `<code>${paste.data.result.url}</code>`,
-          options
-        );
+        bot.sendMessage(chatId, `${paste.data.result.url}`, options);
       } else {
         bot.sendMessage(chatId, `<code>${magnet}</code>`, options);
       }
